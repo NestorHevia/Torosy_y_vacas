@@ -43,7 +43,7 @@ def get_numero_secreto():
 # O presiona x para rendirte.
 def try_salir_funcion(codigo_ingresado=None):
     if codigo_ingresado == 'x':
-        print("Te rendiste el codigo secreto es: ", get_numero_secreto())
+        print("Te rendiste el código secreto es: ", get_numero_secreto())
         sys.exit()
 
 # definiendo variables globales
@@ -67,7 +67,7 @@ def get_CodIngresado():
         try_salir_funcion(codigo_ingresado)
 
         while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True:
-            codigo_ingresado = input("Ingrese un codigo correctamente, (X) para rendirte: ")
+            codigo_ingresado = input("Ingrese un código correctamente, (X) para rendirte: ")
             try_salir_funcion(codigo_ingresado)
         
         # Validar entrada
@@ -99,14 +99,14 @@ print(" (2) Para jugar")
 print(" (3) Salir del juego")
 
 
-opcion = int(input("\nElija una opcion: "))
+opcion = int(input("\nElija una opción: "))
 while opcion >= 1 and opcion <= 3:
     if opcion == 1:
         print(Instrucciones())
         print("---------------PRESIONE--------------\n")
         print(" (2) Para jugar")
         print(" (3) Salir del juego")
-        opcion = int(input("\nElija una opcion: "))
+        opcion = int(input("\nElija una opción: "))
 
     if opcion == 2:
         get_CodIngresado()
@@ -114,4 +114,4 @@ while opcion >= 1 and opcion <= 3:
         print("Gracias por participar")
     if opcion >= 3:
         print("Ha ocurrido un error")
-        opcion = int(input("\nElija una opcion del 1 al 3: \n"))
+        opcion = int(input("\nElija una opción del 1 al 3: \n"))
