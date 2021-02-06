@@ -1,8 +1,4 @@
-import os
-import secrets
 import random
-import math
-import string
 import sys
 
 # La función sample() del modulo random devuelve de una lista de elementos, un
