@@ -62,7 +62,7 @@ def get_CodIngresado():
         codigo_ingresado = input("Ingrese un código, (X) para rendirte: ")
         try_salir_funcion(codigo_ingresado)
 
-        while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True:
+        while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True or len(set(codigo_ingresado)) != 4:
             codigo_ingresado = input("Ingrese un código correctamente, (X) para rendirte: ")
             try_salir_funcion(codigo_ingresado)
         
