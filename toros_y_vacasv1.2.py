@@ -1,6 +1,8 @@
 import random
 import sys
 
+
+
 # La función sample() del modulo random devuelve de una lista de elementos, un
 # determinado número de elementos (4) diferentes elegidos al azar.
 
