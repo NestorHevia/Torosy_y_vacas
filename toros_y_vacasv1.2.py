@@ -81,7 +81,11 @@ def get_CodIngresado():
         codigo_ingresado = input("Ingrese un código, (X) para rendirte: ")
         try_salir_funcion(codigo_ingresado)
 
+<<<<<<< HEAD
         while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True or validate_repeated_numbers(codigo_ingresado):
+=======
+        while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True or len(set(codigo_ingresado)) != 4:
+>>>>>>> 1a5fd8fc58e6c215da49c5ba366de6613f6439a5
             codigo_ingresado = input("Ingrese un código correctamente, (X) para rendirte: ")
             try_salir_funcion(codigo_ingresado)
         
