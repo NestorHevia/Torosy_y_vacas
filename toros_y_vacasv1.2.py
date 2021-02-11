@@ -5,6 +5,8 @@ import time
 # La función sample() del modulo random devuelve de una lista de elementos, un
 # determinado número de elementos (4) diferentes elegidos al azar.
 
+entered_numbers = []
+
 def ImprimeEncabezado():
     titulo = "\nT O R O S  Y  V A C A S v-1.2"
     return titulo
@@ -47,10 +49,22 @@ def try_salir_funcion(codigo_ingresado=None):
         print("Te rendiste el código secreto es: ", get_numero_secreto())
         sys.exit()
 
+
+def get_string_time_format(final_time):
+    if final_time >= 60 * 60:
+        return '%H horas con %M minutos y %S segundos'
+    if final_time >= 60:
+        return '%M minutos y %S segundos'
+    return '%S'
+
+def get_formatted_time(final_time):
+    return time.strftime(get_string_time_format(final_time), time.gmtime(final_time))
+
+
 def ganar_juego(contador_intentos, toros):
-    global game_time
+    global init_time
     if toros == 4:
-        print('\nFELICIDADES !!!   ^_^ !!! GANASTE en', contador_intentos, 'intentos', 'en un tiempo de', game_time, 'segundos')
+        print('\nFELICIDADES !!!   ^_^ !!! GANASTE en', contador_intentos, 'intentos', 'en un tiempo de', get_formatted_time(time.time() - init_time), 'segundos')
         sys.exit()
 
 # Validate repeated digit
@@ -67,24 +81,25 @@ def get_CodIngresado():
     global contador_intentos
     global toros
     global vacas
-    global time_ini
-    global time_end
-    global game_time
+    global init_time
+    init_time = time.time()
     while toros != 4:
-        contador_intentos += 1
-        print(" ")
-        count = (f"INTENTO No. {str(contador_intentos)}")
-        print(count.center(50, "="))
         toros = 0
         vacas = 0
-        time_ini = time.time()
         codigo_ingresado = input("Ingrese un código, (X) para rendirte: ")
         try_salir_funcion(codigo_ingresado)
 
         while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True or validate_repeated_numbers(codigo_ingresado):
             codigo_ingresado = input("Ingrese un código correctamente, (X) para rendirte: ")
             try_salir_funcion(codigo_ingresado)
-        
+        if codigo_ingresado in entered_numbers:
+            print('No te queremos consumir intentos, ya ese número fue ingresado')
+            continue
+        contador_intentos += 1
+        print(" ")
+        count = (f"INTENTO No. {str(contador_intentos)}")
+        print(count.center(50, "="))
+        entered_numbers.append(codigo_ingresado)
         # Validar entrada
         if len(codigo_ingresado) == 4 and codigo_ingresado.isdigit() == True:
             cs = get_numero_secreto()
@@ -97,8 +112,6 @@ def get_CodIngresado():
                     continue
                 vacas += 1
             print('Calificacion: Vacas: ', vacas, ' Toros: ', toros)
-            time_end = time.time()
-            game_time = round(time_end-time_ini,0)
             ganar_juego(contador_intentos, toros)
 
 # Aqui comienza la ejecucion del juego
