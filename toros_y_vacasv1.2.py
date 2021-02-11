@@ -5,6 +5,8 @@ import time
 # La función sample() del modulo random devuelve de una lista de elementos, un
 # determinado número de elementos (4) diferentes elegidos al azar.
 
+entered_numbers = []
+
 def ImprimeEncabezado():
     titulo = "\nT O R O S  Y  V A C A S v-1.2"
     return titulo
@@ -82,10 +84,6 @@ def get_CodIngresado():
     global init_time
     init_time = time.time()
     while toros != 4:
-        contador_intentos += 1
-        print(" ")
-        count = (f"INTENTO No. {str(contador_intentos)}")
-        print(count.center(50, "="))
         toros = 0
         vacas = 0
         codigo_ingresado = input("Ingrese un código, (X) para rendirte: ")
@@ -94,7 +92,14 @@ def get_CodIngresado():
         while len(codigo_ingresado) != 4 and codigo_ingresado != 'x' or codigo_ingresado.isdigit() != True or validate_repeated_numbers(codigo_ingresado):
             codigo_ingresado = input("Ingrese un código correctamente, (X) para rendirte: ")
             try_salir_funcion(codigo_ingresado)
-
+        if codigo_ingresado in entered_numbers:
+            print('No te queremos consumir intentos, ya ese número fue ingresado')
+            continue
+        contador_intentos += 1
+        print(" ")
+        count = (f"INTENTO No. {str(contador_intentos)}")
+        print(count.center(50, "="))
+        entered_numbers.append(codigo_ingresado)
         # Validar entrada
         if len(codigo_ingresado) == 4 and codigo_ingresado.isdigit() == True:
             cs = get_numero_secreto()
